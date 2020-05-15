@@ -1,5 +1,9 @@
 # `is-esm`
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mgechev/is-esm/master/demo.gif" alt="">
+</p>
+
 This package tells you if an npm module uses ECMAScript modules or not.
 
 ## Why do I need to know?
