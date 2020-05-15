@@ -1,7 +1,6 @@
 const tmp = require("tmp");
 const { join } = require("path");
 const { writeFileSync } = require("fs");
-const { execSync } = require("child_process");
 
 const { rollup } = require("rollup");
 const nodeResolve = require("@rollup/plugin-node-resolve");
@@ -45,12 +44,6 @@ const initializeTempDir = (packageName, indexName) => {
   );
 
   return tmpDir.name;
-};
-
-const installModules = (packageName, version, tmpDirName) => {
-  execSync(utils.installCommand(packageName, version, tmpDirName), {
-    stdio: ["ignore"],
-  });
 };
 
 const checkESM = async (packageName, entryFile) => {
@@ -107,7 +100,7 @@ module.exports = async (packageName, version) => {
   const tmpDirName = initializeTempDir(packageName, indexName);
 
   try {
-    installModules(packageName, version, tmpDirName);
+    await utils.installModules(packageName, version, tmpDirName);
   } catch (e) {
     spinner.fail("Unable to fetch the package");
     process.exit(0);
