@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const main = require('./main');
 
 const packageName = process.argv[2];

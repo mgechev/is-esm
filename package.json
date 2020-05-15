@@ -2,7 +2,10 @@
   "name": "is-esm",
   "version": "0.0.0",
   "description": "CLI tool that helps you check if a package is using ECMAScript modules.",
-  "main": "index.js",
+  "main": "main.js",
+  "bin": {
+    "is-esm": "./index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mgechev/is-esm.git"
