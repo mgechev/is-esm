@@ -1,0 +1,31 @@
+{
+  "name": "is-esm",
+  "version": "0.0.0",
+  "description": "CLI tool that helps you check if a package is using ECMAScript modules.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mgechev/is-esm.git"
+  },
+  "keywords": [
+    "esm",
+    "modules",
+    "javascript",
+    "npm",
+    "cjs",
+    "commonjs"
+  ],
+  "author": "Minko Gechev <mgechev@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mgechev/is-esm/issues"
+  },
+  "homepage": "https://github.com/mgechev/is-esm#readme",
+  "dependencies": {
+    "@rollup/plugin-node-resolve": "^7.1.3",
+    "ora": "^4.0.4",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.10.2",
+    "tmp": "^0.2.1"
+  }
+}
