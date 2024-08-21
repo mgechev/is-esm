@@ -11,26 +11,21 @@ const rimraf = require("rimraf");
 const utils = require("./npm-utils");
 
 const getPackageVersion = async (packageName, version) => {
-  let versions = [];
   try {
-    versions = await utils.getVersionList(packageName);
-  } catch (e) {
-    throw new Error(e.message);
+    const versionList = await utils.getVersionList(packageName);
+
+    // If there is only a single version, `npm show ${name} versions --json` returns a string. 
+    // This ensures `versions` is always an array, even if there's only one version.
+    const versions = Array.isArray(versionList) ? versionList : [versionList];
+
+    // Default to the latest version if no specific version is provided
+    version = version || versions[versions.length - 1];
+
+    // Check if the desired version exists in the versions list
+    return versions.includes(version) ? version : undefined;
+  } catch (error) {
+    throw new Error(error.message);
   }
-  if (!version) {
-    version = versions[versions.length - 1];
-  }
-  let found = false;
-  for (const v of versions) {
-    if (v === version) {
-      found = true;
-      break;
-    }
-  }
-  if (found) {
-    return version;
-  }
-  return undefined;
 };
 
 const initializeTempDir = (packageName, indexName) => {
